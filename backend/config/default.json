@@ -1,0 +1,11 @@
+{
+  "db": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "postgres",
+    "host": "localhost",
+    "database": "postgres",
+    "schema": "public",
+    "dialect": "postgres"
+  }
+}
