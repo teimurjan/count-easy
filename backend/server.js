@@ -1,12 +1,12 @@
-import express from 'express'
-import path from 'path'
-import logger from 'morgan'
-import cookieParser from 'cookie-parser'
-import bodyParser from 'body-parser'
-import DBMigrate from 'db-migrate'
-import c from 'config'
-import errorHandler from 'errorhandler'
-import Sequelize from 'sequelize'
+import express from 'express';
+import path from 'path';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import DBMigrate from 'db-migrate';
+import c from 'config';
+import errorHandler from 'errorhandler';
+import Sequelize from 'sequelize';
 
 
 async function createServer() {
@@ -15,19 +15,19 @@ async function createServer() {
     .then(() => config(app))
     .then(() => console.log('application has started'))
     .then(() => app)
-    .catch(e => console.error(e))
+    .catch(e => console.error(e));
 }
 
 async function migrate() {
-  const dbConfig = c.get('db')
+  const dbConfig = c.get('db');
   if (dbConfig) {
-    const migration = DBMigrate.getInstance(true, { config: { dev: dbConfig } })
-    await migration.up()
+    const migration = DBMigrate.getInstance(true, { config: { dev: dbConfig } });
+    await migration.up();
   }
 }
 
 function initSequelize(dbConfig) {
-  return new Sequelize(dbConfig)
+  return new Sequelize(dbConfig);
 }
 
 function config(application) {
@@ -47,7 +47,7 @@ function config(application) {
   });
 
   if (c.has('db')) {
-    initSequelize(c.get('db'))
+    initSequelize(c.get('db'));
   }
   // error handler
   // eslint-disable-next-line no-unused-vars
@@ -55,4 +55,4 @@ function config(application) {
 }
 
 
-export default createServer
+export default createServer;

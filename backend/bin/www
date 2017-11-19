@@ -4,11 +4,11 @@
  * Module dependencies.
  */
 
-import debugPackage from 'debug'
-import http from 'http'
-import createServer from '../server'
+import debugPackage from 'debug';
+import http from 'http';
+import createServer from '../server';
 
-const debug = debugPackage('backend:server')
+const debug = debugPackage('backend:server');
 
 /**
  * Get port from environment and store in Express.
@@ -28,10 +28,10 @@ createServer()
      * Listen on provided port, on all network interfaces.
      */
 
-    server.listen(port)
+    server.listen(port);
     server.on('error', onError);
     server.on('listening', onListening);
-  })
+  });
 
 /**
  * Normalize a port into a number, string, or false.
