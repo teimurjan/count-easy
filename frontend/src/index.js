@@ -6,7 +6,7 @@ import {browserHistory, Router} from 'react-router';
 import 'antd/dist/antd.css';
 import {Provider} from "mobx-react";
 import routes from "./routes";
-import createStore from "./App/AppStore";
+import createStore from "./createStore";
 
 const routingStore = new RouterStore();
 const history = syncHistoryWithStore(browserHistory, routingStore);

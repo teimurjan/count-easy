@@ -1,14 +1,16 @@
 import {observable, action} from 'mobx';
 import {post} from "../api";
+import StoreWithRouter from "../Base/StoreWithRouter";
 
-export default class LoginPageStore {
+export default class LoginPageStore extends StoreWithRouter {
 
   @observable email;
   @observable password;
   @observable isLoading;
   @observable error;
 
-  constructor() {
+  constructor(router) {
+    super(router);
     this.email = '';
     this.password = '';
     this.isLoading = false;
@@ -35,6 +37,7 @@ export default class LoginPageStore {
       .then(res => {
         localStorage.setItem('token', res.token);
         this.isLoading = false;
+        this.router.push('/');
       })
       .catch(err => {
           this.error = err.message;
