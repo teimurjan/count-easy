@@ -1,5 +1,5 @@
 import LoginPageStore from "./LoginPage/LoginPageStore";
-import RegistrationPageStore from "./Registration/RegistrationPageStore";
+import RegistrationPageStore from "./RegistrationPage/RegistrationPageStore";
 
 export default routingStore => ({
   routing: routingStore,

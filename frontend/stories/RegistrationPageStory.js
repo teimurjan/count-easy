@@ -1,7 +1,7 @@
 import React from 'react';
 import {action} from '@storybook/addon-actions';
 import {storiesOf} from '@storybook/react';
-import {RegistrationPage} from "../src/Registration/RegistrationPage";
+import {RegistrationPage} from "../src/RegistrationPage/RegistrationPage";
 
 const setName = action("Set name");
 const setEmail = action("Set email");
