@@ -1,7 +1,7 @@
 import {observable, action} from 'mobx';
 import {post} from "../api";
 
-class LoginPageStore {
+export default class LoginPageStore {
 
   @observable email;
   @observable password;
@@ -43,6 +43,3 @@ class LoginPageStore {
       )
   }
 }
-
-const loginPageStore = new LoginPageStore();
-export default loginPageStore;

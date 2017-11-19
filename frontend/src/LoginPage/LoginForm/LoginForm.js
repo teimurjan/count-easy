@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
-import {injectStore, injectStoreWithSchema} from "../../utils";
 import './LoginForm.scss'
 
 const LoginForm = Form.create()(({onEmailChange, onPasswordChange, onSubmit}) => (
