@@ -30,6 +30,13 @@ export default storiesOf('Add Payment modal', module)
       <AddPayment {...initialState}/>
     </LocaleProvider>)
   )
+  .add('With Content', () => (
+    <LocaleProvider locale={enUS}>
+      <AddPayment {...Object.assign({}, initialState, {
+        categories: [{id: 1, name: 'Electricity'}, {id: 2, name: 'Gas'}]
+      })}/>
+    </LocaleProvider>)
+  )
   .add('Loading State', () => (
       <LocaleProvider locale={enUS}>
         <AddPayment {...Object.assign({}, initialState, {
