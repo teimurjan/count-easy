@@ -14,7 +14,7 @@ const initialState = {
   ...actions
 };
 
-export default storiesOf('PaymentsCalendar', module)
+export default storiesOf('Payments Calendar', module)
   .add('Initial State', () => (
     <LocaleProvider locale={enUS}>
       <PaymentsCalendar {...initialState}/>
