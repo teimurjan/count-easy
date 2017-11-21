@@ -2,7 +2,7 @@ const requiredRule = message => ({required: true, message});
 
 export const fieldRequiredRules = field => ({
   rules: [
-    requiredRule(`Please input your ${field}`)
+    requiredRule(`Please input ${field}`)
   ]
 });
 

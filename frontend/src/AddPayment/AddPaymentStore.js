@@ -47,7 +47,22 @@ export default class AddPaymentStore extends StoreWithRouter {
         this.isLoading = false;
       })
       .catch(err => {
-        this.errors['categories'] = err.message;
+        this.errors = err;
+        this.isLoading = false;
+      })
+  }
+
+  @action
+  submit() {
+    this.isLoading = true;
+    const {amount, date, category: {id: category_id} = {}} = this;
+    post('/payments', {amount, date, category_id}, {message: 'ok'})
+      .then(res => {
+        this.isLoading = false;
+        this.router.push('/');
+      })
+      .catch(err => {
+        this.errors = err;
         this.isLoading = false;
       })
   }

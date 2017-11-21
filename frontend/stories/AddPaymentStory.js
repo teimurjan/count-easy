@@ -10,7 +10,8 @@ const setAmount = action("Set amount");
 const setDate = action("Set date");
 const setCategory = action("Set category");
 const fetchCategories = action("Fetched categories");
-const actions = {setCategory, setAmount, setDate, fetchCategories};
+const submit = action("Submitted");
+const actions = {setCategory, setAmount, setDate, fetchCategories, submit};
 
 const initialState = {
   visible: true,
@@ -29,11 +30,10 @@ export default storiesOf('Add Payment modal', module)
       <AddPayment {...initialState}/>
     </LocaleProvider>)
   )
-  .add('With content', () => (
+  .add('Loading State', () => (
       <LocaleProvider locale={enUS}>
         <AddPayment {...Object.assign({}, initialState, {
-          categories: [{id: 1, name: 'Electricity'}, {id: 2, name: 'Gas'}], category: {id: 1, name: 'Electricity'},
-          date: moment(), amount: 100
+          isLoading: true
         })}/>
       </LocaleProvider>
     )
