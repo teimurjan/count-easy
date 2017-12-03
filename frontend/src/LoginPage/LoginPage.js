@@ -12,7 +12,7 @@ const LoginPage = ({isLoading, setEmail, setPassword, submit}) => {
   return (
     <div id="loginPage">
       <Spin wrapperClassName="login-page-wrapper" spinning={isLoading}>
-        <h1 className="login-page-title">Welcome!</h1>
+        <h1 className="login-page-title">Hello!</h1>
         <LoginForm onEmailChange={onEmailChange}
                    onPasswordChange={onPasswordChange}
                    onSubmit={submit}
