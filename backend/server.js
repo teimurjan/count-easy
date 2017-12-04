@@ -6,11 +6,18 @@ import bodyParser from 'body-parser';
 import DBMigrate from 'db-migrate';
 import c from 'config';
 import errorHandler from 'errorhandler';
-import Sequelize from 'sequelize';
+import passport from 'passport';
+import {jwtStrategy} from './auth';
+import sequelize from './db';
 
+function initPassport() {
+  passport.use(jwtStrategy);
+  return passport.initialize();
+}
 
 async function createServer() {
   const app = express();
+
   return migrate()
     .then(() => config(app))
     .then(() => console.log('application has started'))
@@ -26,13 +33,11 @@ async function migrate() {
   }
 }
 
-function initSequelize(dbConfig) {
-  return new Sequelize(dbConfig);
-}
-
 function config(application) {
   application.set('view engine', 'json');
 
+  application.use(initPassport());
+  application.use(sequelize);
   application.use(logger('dev'));
   application.use(bodyParser.json());
   application.use(bodyParser.urlencoded({ extended: false }));
@@ -46,9 +51,7 @@ function config(application) {
     next(err);
   });
 
-  if (c.has('db')) {
-    initSequelize(c.get('db'));
-  }
+
   // error handler
   // eslint-disable-next-line no-unused-vars
   application.use(errorHandler());
