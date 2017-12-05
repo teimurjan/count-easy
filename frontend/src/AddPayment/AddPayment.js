@@ -6,10 +6,10 @@ import {Select} from "antd"
 import {injectStore} from "../utils";
 import {fieldRequiredRules} from "../Base/validations";
 
-const AddPayment = Form.create()(({
+const AddPayment = ({
                                     visible, categories, isLoading, errors, date, category, amount,
                                     setAmount, setCategory, setDate, fetchCategories, submit,
-                                    form: {validateFields, getFieldDecorator}
+                                    form: {validateFields, getFieldDecorator}, onClose
                                   }) => {
 
   const handleSubmit = e => {
@@ -18,7 +18,7 @@ const AddPayment = Form.create()(({
   };
 
   return (
-    <Modal title="Add payment" visible={visible} confirmLoading={isLoading} onOk={handleSubmit}>
+    <Modal title="Add payment" visible={visible} confirmLoading={isLoading} onOk={handleSubmit} onCancel={onClose}>
       <Form>
         <Form.Item label='What' labelCol={{span: 4}} wrapperCol={{span: 12}}>
           {getFieldDecorator('category', {...fieldRequiredRules('category'), onChange: setCategory})(
@@ -42,23 +42,24 @@ const AddPayment = Form.create()(({
       </Form>
     </Modal>
   );
-});
+};
 
 AddPayment.propTypes = {
   visible: PropTypes.bool.isRequired,
-  categories: PropTypes.array.isRequired,
+  categories: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,
   date: PropTypes.object,
-  category: PropTypes.object,
+  category: PropTypes.string,
   setAmount: PropTypes.func.isRequired,
   setCategory: PropTypes.func.isRequired,
   setDate: PropTypes.func.isRequired,
   fetchCategories: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
-const AddPaymentContainer = injectStore('addPaymentStore', AddPayment);
+const  AddPaymentContainer = injectStore('addPaymentStore', Form.create()(AddPayment));
 export {AddPayment, AddPaymentContainer};
 
 

@@ -5,6 +5,7 @@ import StoreWithRouter from "../Base/StoreWithRouter";
 export default class AddPaymentStore extends StoreWithRouter {
 
   @observable amount;
+  @observable visible;
   @observable categories;
   @observable isLoading;
   @observable date;
@@ -14,6 +15,7 @@ export default class AddPaymentStore extends StoreWithRouter {
   constructor(router) {
     super(router);
     this.amount = 0;
+    this.visible = false;
     this.categories = [];
     this.isLoading = false;
     this.errors = {};
@@ -21,6 +23,11 @@ export default class AddPaymentStore extends StoreWithRouter {
     this.category = null;
     this.setAmount = this.setAmount.bind(this);
     this.setDate = this.setDate.bind(this);
+    this.fetchCategories = this.fetchCategories.bind(this);
+    this.setCategory = this.setCategory.bind(this);
+    this.submit = this.submit.bind(this);
+    this.open = this.setVisible.bind(this, true);
+    this.close = this.setVisible.bind(this, false);
   }
 
   @action
@@ -37,6 +44,12 @@ export default class AddPaymentStore extends StoreWithRouter {
   setCategory(category) {
     this.category = category;
   }
+
+  @action
+  setVisible(visible) {
+    this.visible = visible;
+  }
+
 
   @action
   fetchCategories() {

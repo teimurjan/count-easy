@@ -2,7 +2,6 @@ import React from 'react';
 import {action} from '@storybook/addon-actions';
 import {storiesOf} from '@storybook/react';
 import {AddPayment} from "../src/AddPayment/AddPayment";
-import moment from 'moment';
 import {LocaleProvider} from "antd";
 import enUS from 'antd/lib/locale-provider/en_US';
 

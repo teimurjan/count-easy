@@ -12,6 +12,7 @@ export default class RegistrationPageStore extends StoreWithRouter {
     super(router);
     this.payments = [];
     this.isLoading = false;
+    this.fetchPayments = this.fetchPayments.bind(this);
   }
 
   @action

@@ -41,8 +41,7 @@ class PaymentsCalendar extends React.Component {
 PaymentsCalendar.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   fetchPayments: PropTypes.func.isRequired,
-  payments: PropTypes.array.isRequired,
+  payments: PropTypes.object.isRequired,
 };
-
 const PaymentsCalendarContainer = injectStore('paymentsCalendarStore', PaymentsCalendar);
 export {PaymentsCalendar, PaymentsCalendarContainer};
