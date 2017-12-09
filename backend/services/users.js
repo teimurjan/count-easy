@@ -21,7 +21,8 @@ export const signin = async (login, password) => {
     throw new UnauthorizedHttpException(PASSWORD_DO_NOT_MATCH)
   } else {
     const payload = {id: user.id};
-    return jwt.sign(payload, jwtSecret);
+    const token = jwt.sign(payload, jwtSecret);
+    return {token}
   }
 };
 
@@ -32,5 +33,6 @@ export const signup = async (login, password) => {
   const encryptedPassword = await encryptPassword(password);
   const user = await createUser({login, password: encryptedPassword});
   const payload = {id: user.id};
-  return jwt.sign(payload, jwtSecret);
+  const token = jwt.sign(payload, jwtSecret);
+  return {token}
 };

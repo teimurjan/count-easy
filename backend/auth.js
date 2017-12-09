@@ -7,8 +7,8 @@ const jwtOptions = {
   secretOrKey: c.get('auth.jwtSecret')
 };
 
-export const jwtStrategy = new JwtStrategy(jwtOptions, (payload, next) => {
-  const user = findById(payload.id);
+export const jwtStrategy = new JwtStrategy(jwtOptions, async (payload, next) => {
+  const user = await findById(payload.id);
   if (user) {
     next(null, user);
   } else {
