@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/",
+    "start": "NODE_CONFIG_DIR=./backend/config node ./bin/",
     "migrate": "node ./node_modules/db-migrate/bin/db-migrate"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
+    "babel-plugin-dynamic-import-node": "^1.2.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0"

@@ -8,7 +8,7 @@ import c from 'config';
 import errorHandler from 'errorhandler';
 import passport from 'passport';
 import {jwtStrategy} from './auth';
-import sequelize from './db';
+import autoImport from './utils/auto-import'
 
 function initPassport() {
   passport.use(jwtStrategy);
@@ -28,16 +28,15 @@ async function createServer() {
 async function migrate() {
   const dbConfig = c.get('db');
   if (dbConfig) {
-    const migration = DBMigrate.getInstance(true, { config: { dev: dbConfig } });
+    const migration = DBMigrate.getInstance(true, { config: { dev: dbConfig }, cwd: './backend' });
     await migration.up();
   }
 }
 
-function config(application) {
+async function config(application) {
   application.set('view engine', 'json');
 
   application.use(initPassport());
-  application.use(sequelize);
   application.use(logger('dev'));
   application.use(bodyParser.json());
   application.use(bodyParser.urlencoded({ extended: false }));
@@ -51,7 +50,8 @@ function config(application) {
     next(err);
   });
 
-
+  await autoImport('./backend/models');
+  await autoImport('./backend/', false);
   // error handler
   // eslint-disable-next-line no-unused-vars
   application.use(errorHandler());
