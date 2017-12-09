@@ -1,6 +1,9 @@
-export default class Pathes {
-  static Users = class {
-    Login = '/login';
-    Register = '/register';
+const Pathes = {
+  Root: '/api',
+  Users: {
+    Root: '/users',
+    Login: '/login',
+    Register: '/register',
   }
 }
+export default Pathes;

@@ -1,15 +1,12 @@
 {
-  "db": {
+  "dev": {
     "driver": "pg",
-    "username": "postgres",
+    "user": "postgres",
     "password": "postgres",
     "host": "localhost",
     "database": "count-easy",
     "schema": "public",
     "dialect": "postgres"
   },
-  "auth": {
-    "jwtSecret": "jwt-secret"
-  },
-  "saltRounds": 10
+  "sql-file": true
 }
