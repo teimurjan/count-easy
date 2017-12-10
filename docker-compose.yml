@@ -5,6 +5,10 @@ services:
     image: postgres
     ports:
       - '5432:5432'
+    web:
+      build: .
+      ports:
+       - "5000:5000"
     volumes:
       - ./db:/var/lib/postgresql/data
 volumes:
