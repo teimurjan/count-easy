@@ -6,11 +6,11 @@ import {Select} from "antd"
 import {injectStore} from "../utils";
 import {fieldRequiredRules} from "../Base/validations";
 
-const AddPayment = ({
-                      visible, categories, isLoading, errors, date, category, amount,
-                      setAmount, setCategory, setDate, fetchCategories, submit,
-                      form: {validateFields, getFieldDecorator, getFieldValue, setFieldsValue}, onClose
-                    }) => {
+const AddPayment = Form.create()(({
+                                    visible, categories, isLoading, errors, date, category, amount,
+                                    setAmount, setCategory, setDate, fetchCategories, submit,
+                                    form: {validateFields, getFieldDecorator, getFieldValue, setFieldsValue}, onClose
+                                  }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -54,7 +54,7 @@ const AddPayment = ({
       </Form>
     </Modal>
   );
-};
+});
 
 AddPayment.propTypes = {
   visible: PropTypes.bool.isRequired,
@@ -71,7 +71,7 @@ AddPayment.propTypes = {
   onClose: PropTypes.func.isRequired
 };
 
-const AddPaymentContainer = injectStore('addPaymentStore', Form.create()(AddPayment));
+const AddPaymentContainer = injectStore('addPaymentStore', AddPayment);
 export {AddPayment, AddPaymentContainer};
 
 
