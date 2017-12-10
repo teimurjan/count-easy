@@ -7,15 +7,27 @@ import {injectStore} from "../utils";
 import {fieldRequiredRules} from "../Base/validations";
 
 const AddPayment = ({
-                                    visible, categories, isLoading, errors, date, category, amount,
-                                    setAmount, setCategory, setDate, fetchCategories, submit,
-                                    form: {validateFields, getFieldDecorator}, onClose
-                                  }) => {
+                      visible, categories, isLoading, errors, date, category, amount,
+                      setAmount, setCategory, setDate, fetchCategories, submit,
+                      form: {validateFields, getFieldDecorator, getFieldValue, setFieldsValue}, onClose
+                    }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
     validateFields((err, values) => !err && submit())
   };
+
+  if (amount !== getFieldValue('amount')) {
+    setFieldsValue({amount});
+  }
+
+  if (category !== getFieldValue('category')) {
+    setFieldsValue({category});
+  }
+
+  if (date !== getFieldValue('date')) {
+    setFieldsValue({date});
+  }
 
   return (
     <Modal title="Add payment" visible={visible} confirmLoading={isLoading} onOk={handleSubmit} onCancel={onClose}>
@@ -26,7 +38,7 @@ const AddPayment = ({
                              placeholder="Select category..." fetch={fetchCategories}
                              notFoundContent='No categories'>
               {categories.map((category, i) => (
-                <Select.Option key={i} value={category.name}>{category.name}</Select.Option>
+                <Select.Option key={i} value={category.id}>{category.name}</Select.Option>
               ))}
             </SelectWithFetch>)}
         </Form.Item>
@@ -37,7 +49,7 @@ const AddPayment = ({
         </Form.Item>
         <Form.Item label='When' labelCol={{span: 4}} wrapperCol={{span: 12}}>
           {getFieldDecorator('date', {...fieldRequiredRules('date'), onChange: setDate})(
-          <DatePicker style={{width: '100%'}} placeholder='Select a date...'/>)}
+            <DatePicker style={{width: '100%'}} placeholder='Select a date...'/>)}
         </Form.Item>
       </Form>
     </Modal>
@@ -59,7 +71,7 @@ AddPayment.propTypes = {
   onClose: PropTypes.func.isRequired
 };
 
-const  AddPaymentContainer = injectStore('addPaymentStore', Form.create()(AddPayment));
+const AddPaymentContainer = injectStore('addPaymentStore', Form.create()(AddPayment));
 export {AddPayment, AddPaymentContainer};
 
 

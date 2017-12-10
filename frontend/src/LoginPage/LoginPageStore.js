@@ -33,7 +33,7 @@ export default class LoginPageStore extends StoreWithRouter {
   submit() {
     const {email, password} = this;
     this.isLoading = true;
-    post('/login', {email, password}, {token: 'stub token'})
+    post('/api/users/login', {login: email, password})
       .then(res => {
         localStorage.setItem('token', res.token);
         this.isLoading = false;

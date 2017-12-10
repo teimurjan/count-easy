@@ -18,14 +18,9 @@ export default class RegistrationPageStore extends StoreWithRouter {
   @action
   fetchPayments() {
     this.isLoading = true;
-    get('/payments', {
-      data: [
-        {id: 1, category: {name: 'Electricity'}, amount: 250, paid_at: '2017-11-21T18:25:43.511Z'},
-        {id: 2, category: {name: 'Gas'}, amount: 150, paid_at: '2017-11-20T18:25:43.511Z'}
-      ]
-    })
+    get('/api/payments')
       .then(res => {
-        this.payments = res.data;
+        this.payments = res;
         this.isLoading = false;
       })
       .catch(err => {

@@ -15,18 +15,18 @@ const RegistrationForm = Form.create()(({onNameChange, onEmailChange, onPassword
     <Form className="registration-form">
       <Form.Item>
         {getFieldDecorator('name', fieldRequiredRules('name'))(
-          <Input onBlur={onNameChange} prefix={<Icon type="smile-o" style={{fontSize: 13}}/>} placeholder="Name"/>
+          <Input onChange={onNameChange} prefix={<Icon type="smile-o" style={{fontSize: 13}}/>} placeholder="Name"/>
         )}
       </Form.Item>
       <Form.Item>
         {getFieldDecorator('email', emailValidationRules(true))(
-          <Input onBlur={onEmailChange} prefix={<Icon type="mail" style={{fontSize: 13}}/>} type="email"
+          <Input onChange={onEmailChange} prefix={<Icon type="mail" style={{fontSize: 13}}/>} type="email"
                  placeholder="Email"/>
         )}
       </Form.Item>
       <Form.Item>
         {getFieldDecorator('password', passwordValidationRules(true))(
-          <Input onBlur={onPasswordChange} prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
+          <Input onChange={onPasswordChange} prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
                  placeholder="Password"/>
         )}
       </Form.Item>

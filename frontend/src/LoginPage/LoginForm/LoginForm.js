@@ -15,13 +15,13 @@ const LoginForm = Form.create()(({onEmailChange, onPasswordChange, onSubmit, for
     <Form className="login-form">
       <Form.Item>
         {getFieldDecorator('email', emailValidationRules())(
-          <Input onBlur={onEmailChange} prefix={<Icon type="user" style={{fontSize: 13}}/>} type="email"
+          <Input onChange={onEmailChange} prefix={<Icon type="user" style={{fontSize: 13}}/>} type="email"
                  placeholder="Email"/>
         )}
       </Form.Item>
       <Form.Item>
         {getFieldDecorator('password', passwordValidationRules())(
-          <Input onBlur={onPasswordChange} prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
+          <Input onChange={onPasswordChange} prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
                  placeholder="Password"/>
         )}
       </Form.Item>

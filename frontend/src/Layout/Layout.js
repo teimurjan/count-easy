@@ -11,6 +11,7 @@ class PageLayout extends React.Component {
   static propTypes = {
     openAddPayment: PropTypes.func.isRequired,
     closeAddPayment: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
   };
 
   state = {
@@ -46,6 +47,12 @@ class PageLayout extends React.Component {
                 <span>Calculator</span>
               </Link>
             </Menu.Item>
+            <Menu.Item key='3'>
+              <a onClick={this.props.logout}>
+                <Icon type="logout"/>
+                <span>Log out</span>
+              </a>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
@@ -54,7 +61,7 @@ class PageLayout extends React.Component {
             <Button type='primary' onClick={this.props.openAddPayment}>Add payment</Button>
           </Content>
           <Footer style={{textAlign: 'center'}}>
-            Money Saver ©2017
+            Count Easy ©2017
           </Footer>
         </Layout>
         <AddPaymentContainer visible={this.state.isAddingPayment} onClose={this.props.closeAddPayment}/>
@@ -63,8 +70,12 @@ class PageLayout extends React.Component {
   }
 }
 
-const LayoutContainer = injectStoreWithSchema('addPaymentStore', {
-  openAddPayment: 'open',
-  closeAddPayment: 'close'
+const LayoutContainer = injectStoreWithSchema({
+  'addPaymentStore': {
+    openAddPayment: 'open',
+    closeAddPayment: 'close'
+  }, 'appStore': {
+    logout: 'logout'
+  }
 }, PageLayout);
 export {PageLayout as Layout, LayoutContainer};

@@ -41,7 +41,7 @@ export default class RegistrationPageStore extends StoreWithRouter {
   submit() {
     const {email, password, name} = this;
     this.isLoading = true;
-    post('/register', {name, email, password}, {token: 'stub token'})
+    post('/api/users/register', {name, login:email, password})
       .then(res => {
         localStorage.setItem('token', res.token);
         this.isLoading = false;

@@ -33,6 +33,8 @@ function makeRequest(method, url, data = null, stubData = null) {
       'Content-Type': 'application/json',
     }
   };
+  const token = localStorage.getItem('token');
+  if(token) fetchParams.headers['Authorization'] = `Bearer ${token}`;
   if (data) fetchParams.body = JSON.stringify(data);
   return fetch(url, fetchParams)
     .then(validateStatusCode)

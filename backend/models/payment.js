@@ -14,7 +14,8 @@ PaymentModel.belongsTo(UserModel, {foreignKey: 'userId'});
 
 export const findByUserId = (userId) => {
   return PaymentModel.findAll({
-    where: {userId}
+    where: {userId},
+    include: [{model:CategoryModel, as: 'category'}]
   })
 };
 
