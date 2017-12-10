@@ -42,24 +42,10 @@ Visit [this][docker], choose your OC and follow instructions
 Run these commands
 ```
     docker pull postgres
+    docker-compose up -d
+    docker-compose exec db psql -U postgres
+    CREATE DATABASE "count-easy";
 ```
-```
-    docker run -d --name postgres --net goin 
-    -e POSTGRES_USER=postgres 
-    -e POSTGRES_PASSWORD=postgres 
-    -p 5432:5432 -v postgres_data:/var/lib/postgresql/data
-    --restart unless-stopped postgres
-```
-```
-    docker exec -it postgres bash
-```
-```
-    psql -U postgres
-```
-```
-    CREATE DATABASE count-easy;
-```
-
 ## Database
 
 App uses promise-based [Sequelize ORM][sequelize] to communicate with database.
