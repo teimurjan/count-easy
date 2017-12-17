@@ -1,0 +1,12 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "postgres",
+    "host": "localhost",
+    "database": "count-easy",
+    "schema": "public",
+    "dialect": "postgres"
+  },
+  "sql-file": true
+}

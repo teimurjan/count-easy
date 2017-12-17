@@ -1,0 +1,15 @@
+{
+  "db": {
+    "driver": "pg",
+    "username": "postgres",
+    "password": "postgres",
+    "host": "localhost",
+    "database": "count-easy",
+    "schema": "public",
+    "dialect": "postgres"
+  },
+  "auth": {
+    "jwtSecret": "jwt-secret"
+  },
+  "saltRounds": 10
+}

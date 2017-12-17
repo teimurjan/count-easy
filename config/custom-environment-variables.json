@@ -1,0 +1,6 @@
+{
+  "auth": {
+    "jwtSecret": "JWT_SECRET"
+  },
+  "saltRounds": "SALT_ROUNDS"
+}
