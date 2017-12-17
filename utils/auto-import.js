@@ -28,8 +28,7 @@ const autoImport = (folder, internal = false, filter = () => {}) => {
       it.includes('.js')
     )
     .filter(filter)
-    .map(it =>
-      import(it)))
+    .map(it => import(it)))
 }
 
 export default autoImport
