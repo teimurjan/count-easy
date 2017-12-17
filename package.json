@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/",
+    "heroku-postbuild": "npm install",
+    "start": "babel-node server.js",
     "migrate": "node ./node_modules/db-migrate/bin/db-migrate"
   },
   "dependencies": {
