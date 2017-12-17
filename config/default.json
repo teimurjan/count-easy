@@ -3,7 +3,7 @@
     "driver": "pg",
     "username": "postgres",
     "password": "postgres",
-    "host": "localhost",
+    "host": "postgres://akzvcdupdxhdzg:c5e7b4f0875d32abacb5bd2fe5f56e243996647a507857cb2b9954a6eb042016@ec2-54-235-244-185.compute-1.amazonaws.com",
     "database": "count-easy",
     "schema": "public",
     "dialect": "postgres"
