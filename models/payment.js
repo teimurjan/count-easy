@@ -6,7 +6,8 @@ import {UserModel} from './user';
 export const PaymentModel = sequelize.define('payment', {
   id: {type: Sequelize.DataTypes.UUIDV4, primaryKey: true, defaultValue: Sequelize.UUIDV4},
 
-  amount: {type: Sequelize.DataTypes.INTEGER, allowNull: false}
+  amount: {type: Sequelize.DataTypes.INTEGER, allowNull: false},
+  date: {type: Sequelize.DataTypes.DATE, allowNull: false}
 });
 
 PaymentModel.belongsTo(CategoryModel, {foreignKey: 'categoryId'});

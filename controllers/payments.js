@@ -18,9 +18,9 @@ paymentsRouter.get('/', async (req, res) => {
 paymentsRouter.post('/', async (req, res) => {
   try {
     checkForRequiredFields(req.body, ['amount', 'categoryId'])
-    const {amount, categoryId} = req.body
+    const {amount, categoryId, date} = req.body
     const {id} = req.user
-    const data = await savePayment({amount, categoryId, userId: id})
+    const data = await savePayment({amount, categoryId, userId: id, date})
     return response(res, data)
   } catch (err) {
     return error(res, err)
