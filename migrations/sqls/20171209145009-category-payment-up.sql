@@ -13,6 +13,7 @@ CREATE TABLE "payments" (
         CONSTRAINT "payments_pkey"
         PRIMARY KEY,
     "amount" INTEGER NOT NULL,
+    "date" TIMESTAMP WITH TIME ZONE DEFAULT NOW(),    
     "categoryId" UUID
         CONSTRAINT payments_categories_fkey
         REFERENCES "categories",
