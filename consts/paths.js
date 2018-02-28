@@ -1,4 +1,4 @@
-const Pathes = {
+const Paths = {
   Root: '/api',
   Users: {
     Root: '/users',
@@ -10,6 +10,6 @@ const Pathes = {
   },
   Payments: {
     Root: '/payments',
-  }
-}
-export default Pathes;
+  },
+};
+export default Paths;

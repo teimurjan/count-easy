@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt'
-import c from 'config'
+import bcrypt from 'bcrypt';
+import c from 'config';
 
 const saltRounds = c.has('saltRounds') ? c.get('saltRounds') : null;
 

@@ -4,6 +4,7 @@
     "username": "postgres",
     "password": "postgres",
     "host": "localhost",
+    "port": 5432,
     "database": "count-easy",
     "schema": "public",
     "dialect": "postgres"

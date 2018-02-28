@@ -1,6 +1,6 @@
 FROM mhart/alpine-node:8
 WORKDIR /src
-COPY backend .
+COPY . .
 RUN npm install
 EXPOSE  8080
 CMD ["npm", "start"]

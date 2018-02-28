@@ -1,30 +1,32 @@
-import {Router} from 'express'
-import {getByUserId, savePayment} from '../services/payments'
-import {response, error} from '../utils/controller'
-import {checkForRequiredFields} from '../utils/validators'
+import { Router } from 'express';
+import { getByUserId, savePayment } from '../services/payments';
+import { response, error } from '../utils/controller';
+import checkForRequiredFields from '../utils/validators';
 
-const paymentsRouter = Router()
+const paymentsRouter = Router();
 
 paymentsRouter.get('/', async (req, res) => {
   try {
-    const userId = req.user.id
-    const data = await getByUserId(userId)
-    return response(res, data)
+    const userId = req.user.id;
+    const data = await getByUserId(userId);
+    return response(res, data);
   } catch (err) {
-    return error(res, err)
+    return error(res, err);
   }
-})
+});
 
 paymentsRouter.post('/', async (req, res) => {
   try {
-    checkForRequiredFields(req.body, ['amount', 'categoryId'])
-    const {amount, categoryId, date} = req.body
-    const {id} = req.user
-    const data = await savePayment({amount, categoryId, userId: id, date})
-    return response(res, data)
+    checkForRequiredFields(req.body, ['amount', 'categoryId']);
+    const { amount, categoryId, date } = req.body;
+    const { id } = req.user;
+    const data = await savePayment({
+      amount, categoryId, userId: id, date,
+    });
+    return response(res, data);
   } catch (err) {
-    return error(res, err)
+    return error(res, err);
   }
-})
+});
 
-export default paymentsRouter
+export default paymentsRouter;

@@ -1,9 +1,5 @@
-import {findByUserId, createPayment} from '../models/payment'
+import { findByUserId, createPayment } from '../models/payment';
 
-export const getByUserId = (userId) => {
-  return findByUserId(userId)
-};
+export const getByUserId = userId => findByUserId(userId);
 
-export const savePayment = (data) => {
-  return createPayment(data)
-};
+export const savePayment = data => createPayment(data);

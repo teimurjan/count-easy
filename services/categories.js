@@ -1,9 +1,5 @@
-import {findAll, createCategory} from '../models/category'
+import { findAll, createCategory } from '../models/category';
 
-export const getAll = (userId) => {
-  return findAll(userId)
-};
+export const getAll = userId => findAll(userId);
 
-export const saveCategory = (data) => {
-  return createCategory(data)
-};
+export const saveCategory = data => createCategory(data);

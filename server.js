@@ -7,10 +7,10 @@ import DBMigrate from 'db-migrate';
 import c from 'config';
 import errorHandler from 'errorhandler';
 import passport from 'passport';
-import {jwtStrategy} from './auth';
+import jwtStrategy from './auth';
 import autoImport from './utils/auto-import';
 import router from './controllers/';
-import Pathes from './consts/pathes';
+import Paths from './consts/paths';
 
 function initPassport() {
   passport.use(jwtStrategy);
@@ -21,16 +21,16 @@ async function createServer() {
   const app = express();
 
   return migrate()
-    .then(() => config(app))
-    .then(() => console.log('application has started'))
-    .then(() => app)
-    .catch(e => console.error(e));
+  .then(() => config(app))
+  .then(() => console.log('application has started'))
+  .then(() => app)
+  .catch(e => console.error(e));
 }
 
 async function migrate() {
   const dbConfig = c.get('db');
   if (dbConfig) {
-    const migration = DBMigrate.getInstance(true, {config: {dev: dbConfig}, cwd: '.'});
+    const migration = DBMigrate.getInstance(true, { config: { dev: dbConfig }, cwd: '.' });
     await migration.up();
   }
 }
@@ -41,17 +41,17 @@ async function config(application) {
   application.use(initPassport());
   application.use(logger('dev'));
   application.use(bodyParser.json());
-  application.use(bodyParser.urlencoded({extended: false}));
+  application.use(bodyParser.urlencoded({ extended: false }));
   application.use(cookieParser());
   application.use(express.static(path.join(__dirname, 'public')));
-  application.use(Pathes.Root, router);
+  application.use(Paths.Root, router);
 
   application.use('*', function (req, res) {
     res.sendFile('index.html');
   });
 
   await autoImport('./models');
-  await autoImport('.', false);
+  // await autoImport('.', false);
   // error handler
   // eslint-disable-next-line no-unused-vars
   application.use(errorHandler());
