@@ -1,14 +1,12 @@
 import { Router } from 'express';
-import c from 'config';
-import Pathes from '../consts/paths';
+import Paths from '../consts/paths';
 import { signIn, signUp } from '../services/users';
 import { response, error } from '../utils/controller';
 import checkForRequiredFields from '../utils/validators';
 
 const usersRoutes = Router();
-// const jwtSecret = c.get('auth.jwtSecret');
 
-usersRoutes.post(Pathes.Users.Login, async (req, res) => {
+usersRoutes.post(Paths.Users.Login, async (req, res) => {
   try {
     checkForRequiredFields(req.body, ['login', 'password']);
     const { login, password } = req.body;
@@ -19,7 +17,7 @@ usersRoutes.post(Pathes.Users.Login, async (req, res) => {
   }
 });
 
-usersRoutes.post(Pathes.Users.Register, async (req, res) => {
+usersRoutes.post(Paths.Users.Register, async (req, res) => {
   try {
     checkForRequiredFields(req.body, ['login', 'password']);
     const { login, password } = req.body;

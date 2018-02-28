@@ -1,7 +1,7 @@
-import { Router } from 'express'
-import { getAll, saveCategory } from '../services/categories'
-import { response, error } from '../utils/controller'
-import { checkForRequiredFields } from '../utils/validators'
+import { Router } from 'express';
+import { getAll, saveCategory } from '../services/categories';
+import { response, error } from '../utils/controller';
+import checkForRequiredFields from '../utils/validators';
 
 const categoriesRouter = Router();
 
