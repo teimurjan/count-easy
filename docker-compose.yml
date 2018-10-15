@@ -4,15 +4,17 @@ services:
     build: .
     ports:
      - "8081:8080"
+    env_file:
+      - .env.${ENV}
     depends_on:
       - db
     volumes:
-      - ./web:/usr/app
-    environment:
-      PORT: 8080
+      - ./:/src
   db:
     restart: always
     image: postgres
+    env_file:
+      - .env.${ENV}
     ports:
       - '5432:5432'
     volumes:

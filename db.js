@@ -6,9 +6,12 @@ function initSequelize() {
     throw new Error('No Database config!');
   }
   const {
-    database, username, password, ...options
+    database, username, password, url, ...options
   } = c.get('db');
-  return new Sequelize(database, username, password, options);
+  if (!url) {
+    return new Sequelize(database, username, password, options);
+  }
+  return new Sequelize(url);
 }
 
 const sequelize = initSequelize();

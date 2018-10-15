@@ -2,5 +2,13 @@
   "auth": {
     "jwtSecret": "JWT_SECRET"
   },
+  "db": {
+    "username": "POSTGRES_USER",
+    "password": "POSTGRES_PASSWORD",
+    "host": "NODE_DB_HOST",
+    "port": "NODE_DB_PORT",
+    "database": "POSTGRES_DB",
+    "url": "DATABASE_URL"
+  },
   "saltRounds": "SALT_ROUNDS"
 }

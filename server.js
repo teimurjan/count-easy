@@ -17,16 +17,6 @@ function initPassport() {
   return passport.initialize();
 }
 
-async function createServer() {
-  const app = express();
-
-  return migrate()
-  .then(() => config(app))
-  .then(() => console.log('application has started'))
-  .then(() => app)
-  .catch(e => console.error(e));
-}
-
 async function migrate() {
   const dbConfig = c.get('db');
   if (dbConfig) {
@@ -46,16 +36,22 @@ async function config(application) {
   application.use(express.static(path.join(__dirname, 'public')));
   application.use(Paths.Root, router);
 
-  application.use('*', function (req, res) {
+  application.use('*', (req, res) => {
     res.sendFile('index.html');
   });
 
   await autoImport('./models');
-  // await autoImport('.', false);
-  // error handler
-  // eslint-disable-next-line no-unused-vars
   application.use(errorHandler());
 }
 
+async function createServer() {
+  const app = express();
+
+  return migrate()
+    .then(() => config(app))
+    .then(() => console.log('application has started'))
+    .then(() => app)
+    .catch(e => console.error(e));
+}
 
 export default createServer;
