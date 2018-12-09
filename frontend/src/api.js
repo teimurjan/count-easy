@@ -1,3 +1,5 @@
+const BASE_URL = '';
+
 function validateStatusCode(response) {
   return new Promise((resolve, reject) => {
     const status = response.status;
@@ -7,13 +9,12 @@ function validateStatusCode(response) {
 }
 
 function onResponseValid(payload) {
-  return new Promise((resolve, reject) => resolve(parsePayload(payload)))
+  return new Promise((resolve, reject) => resolve(parsePayload(payload)));
 }
 
 function onResponseInvalid(payload) {
-  return new Promise((resolve, reject) => reject(parsePayload(payload)))
+  return new Promise((resolve, reject) => reject(parsePayload(payload)));
 }
-
 
 function parsePayload(payload) {
   try {
@@ -25,39 +26,44 @@ function parsePayload(payload) {
 
 function makeRequest(method, url, data = null, stubData = null) {
   if (stubData)
-    return new Promise((resolve, reject) => setTimeout(() => stubData.isError ? reject(stubData) : resolve(stubData), 1000));
+    return new Promise((resolve, reject) =>
+      setTimeout(
+        () => (stubData.isError ? reject(stubData) : resolve(stubData)),
+        1000
+      )
+    );
   let fetchParams = {
     method,
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json"
     }
   };
-  const token = localStorage.getItem('token');
-  if(token) fetchParams.headers['Authorization'] = `Bearer ${token}`;
+  const token = localStorage.getItem("token");
+  if (token) fetchParams.headers["Authorization"] = `Bearer ${token}`;
   if (data) fetchParams.body = JSON.stringify(data);
-  return fetch(url, fetchParams)
+  return fetch(`${BASE_URL}${url}`, fetchParams)
     .then(validateStatusCode)
     .catch(onResponseInvalid)
     .then(onResponseValid);
 }
 
 export function get(url, stubData = null) {
-  return makeRequest('GET', url, null, stubData);
+  return makeRequest("GET", url, null, stubData);
 }
 
 export function post(url, data, stubData = null) {
-  return makeRequest('POST', url, data, stubData);
+  return makeRequest("POST", url, data, stubData);
 }
 
 export function put(url, data, stubData = null) {
-  return makeRequest('PUT', url, data, stubData);
+  return makeRequest("PUT", url, data, stubData);
 }
 
 export function patch(url, data, stubData = null) {
-  return makeRequest('PATCH', url, data, stubData);
+  return makeRequest("PATCH", url, data, stubData);
 }
 
 export function remove(url, stubData = null) {
-  return makeRequest('DELETE', url, null, stubData);
+  return makeRequest("DELETE", url, null, stubData);
 }

@@ -1,9 +1,8 @@
-import {observable, action} from 'mobx';
-import {post} from "../api";
+import { observable, action } from "mobx";
+import { post } from "../api";
 import StoreWithRouter from "../Base/StoreWithRouter";
 
 export default class LoginPageStore extends StoreWithRouter {
-
   @observable email;
   @observable password;
   @observable isLoading;
@@ -11,8 +10,8 @@ export default class LoginPageStore extends StoreWithRouter {
 
   constructor(router) {
     super(router);
-    this.email = '';
-    this.password = '';
+    this.email = "";
+    this.password = "";
     this.isLoading = false;
     this.setEmail = this.setEmail.bind(this);
     this.setPassword = this.setPassword.bind(this);
@@ -31,18 +30,17 @@ export default class LoginPageStore extends StoreWithRouter {
 
   @action
   submit() {
-    const {email, password} = this;
+    const { email, password } = this;
     this.isLoading = true;
-    post('/api/users/login', {login: email, password})
+    post("/api/users/login", { login: email, password })
       .then(res => {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem("token", res.token);
         this.isLoading = false;
-        this.router.push('/');
+        this.router.push("/");
       })
       .catch(err => {
-          this.error = err.message;
-          this.isLoading = false;
-        }
-      )
+        this.error = err.message;
+        this.isLoading = false;
+      });
   }
 }

@@ -1,9 +1,7 @@
-import {observable, action} from 'mobx';
-import {post} from "../api";
+import { observable, action } from "mobx";
 import StoreWithRouter from "../Base/StoreWithRouter";
 
 export default class AppStore extends StoreWithRouter {
-
   @observable isLoggedIn;
 
   constructor(router) {
@@ -13,7 +11,7 @@ export default class AppStore extends StoreWithRouter {
 
   @action
   logout() {
-    localStorage.removeItem('token');
-    this.router.push('/login');
+    localStorage.removeItem("token");
+    this.router.push("/login");
   }
 }

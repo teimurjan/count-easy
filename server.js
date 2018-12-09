@@ -20,7 +20,10 @@ function initPassport() {
 async function migrate() {
   const dbConfig = c.get('db');
   if (dbConfig) {
-    const migration = DBMigrate.getInstance(true, { config: { dev: dbConfig }, cwd: '.' });
+    const migration = DBMigrate.getInstance(true, {
+      config: { dev: dbConfig },
+      cwd: '.',
+    });
     await migration.up();
   }
 }

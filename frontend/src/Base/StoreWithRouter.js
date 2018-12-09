@@ -1,5 +1,5 @@
 export default class StoreWithRouter {
-  constructor(router){
+  constructor(router) {
     this.router = router;
   }
 }

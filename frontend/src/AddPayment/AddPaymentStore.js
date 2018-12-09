@@ -1,9 +1,8 @@
-import {observable, action} from 'mobx';
-import {post, get} from "../api";
+import { observable, action } from "mobx";
+import { post, get } from "../api";
 import StoreWithRouter from "../Base/StoreWithRouter";
 
 export default class AddPaymentStore extends StoreWithRouter {
-
   @observable amount;
   @observable visible;
   @observable categories;
@@ -56,11 +55,10 @@ export default class AddPaymentStore extends StoreWithRouter {
     this.visible = visible;
   }
 
-
   @action
   fetchCategories() {
     this.isLoading = true;
-    get('/api/categories')
+    get("/api/categories")
       .then(res => {
         this.categories = res;
         this.isLoading = false;
@@ -68,23 +66,23 @@ export default class AddPaymentStore extends StoreWithRouter {
       .catch(err => {
         this.errors = err;
         this.isLoading = false;
-      })
+      });
   }
 
   @action
   submit() {
     this.isLoading = true;
-    const {amount, date, category} = this;
-    post('/api/payments', {amount, date, categoryId: category})
+    const { amount, date, category } = this;
+    post("/api/payments", { amount, date, categoryId: category })
       .then(res => {
         this.isLoading = false;
-        this.router.push('/');
+        this.router.push("/");
         this.updatePayments();
         this.init();
       })
       .catch(err => {
         this.errors = err;
         this.isLoading = false;
-      })
+      });
   }
 }

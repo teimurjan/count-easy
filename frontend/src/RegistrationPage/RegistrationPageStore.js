@@ -1,9 +1,8 @@
-import {observable, action} from 'mobx';
-import {post} from "../api";
+import { observable, action } from "mobx";
+import { post } from "../api";
 import StoreWithRouter from "../Base/StoreWithRouter";
 
 export default class RegistrationPageStore extends StoreWithRouter {
-
   @observable name;
   @observable email;
   @observable password;
@@ -12,9 +11,9 @@ export default class RegistrationPageStore extends StoreWithRouter {
 
   constructor(router) {
     super(router);
-    this.name = '';
-    this.email = '';
-    this.password = '';
+    this.name = "";
+    this.email = "";
+    this.password = "";
     this.isLoading = false;
     this.setName = this.setName.bind(this);
     this.setEmail = this.setEmail.bind(this);
@@ -39,18 +38,17 @@ export default class RegistrationPageStore extends StoreWithRouter {
 
   @action
   submit() {
-    const {email, password, name} = this;
+    const { email, password, name } = this;
     this.isLoading = true;
-    post('/api/users/register', {name, login:email, password})
+    post("/api/users/register", { name, login: email, password })
       .then(res => {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem("token", res.token);
         this.isLoading = false;
-        this.router.push('/');
+        this.router.push("/");
       })
       .catch(err => {
-          this.error = err.message;
-          this.isLoading = false;
-        }
-      )
+        this.error = err.message;
+        this.isLoading = false;
+      });
   }
 }

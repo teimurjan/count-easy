@@ -1,9 +1,8 @@
-import {observable, action} from 'mobx';
-import {get} from "../api";
+import { observable, action } from "mobx";
+import { get } from "../api";
 import StoreWithRouter from "../Base/StoreWithRouter";
 
 export default class RegistrationPageStore extends StoreWithRouter {
-
   @observable payments;
   @observable isLoading;
   @observable error;
@@ -18,7 +17,7 @@ export default class RegistrationPageStore extends StoreWithRouter {
   @action
   fetchPayments() {
     this.isLoading = true;
-    get('/api/payments')
+    get("/api/payments")
       .then(res => {
         this.payments = res;
         this.isLoading = false;
@@ -26,6 +25,6 @@ export default class RegistrationPageStore extends StoreWithRouter {
       .catch(err => {
         this.errors = err;
         this.isLoading = false;
-      })
+      });
   }
 }

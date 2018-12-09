@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Select} from "antd";
+import React from "react";
+import PropTypes from "prop-types";
+import { Select } from "antd";
 
 export default class SelectWithFetch extends React.Component {
   static propTypes = {
@@ -13,11 +13,7 @@ export default class SelectWithFetch extends React.Component {
   }
 
   render() {
-    const {fetch, children, ...props} = this.props;
-    return (
-      <Select {...props}>
-        {children}
-      </Select>
-    );
+    const { fetch, children, ...props } = this.props;
+    return <Select {...props}>{children}</Select>;
   }
 }

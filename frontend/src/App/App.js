@@ -1,1 +1,1 @@
-export const App = ({children}) => children;
+export const App = ({ children }) => children;
