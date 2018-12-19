@@ -2,7 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "mobx-react";
 import { syncHistoryWithStore, RouterStore } from "mobx-react-router";
-import { browserHistory, Router, IndexRoute, Route, Redirect } from "react-router";
+import {
+  browserHistory,
+  Router,
+  IndexRoute,
+  Route,
+  Redirect
+} from "react-router";
 import { LocaleProvider } from "antd";
 import enUS from "antd/lib/locale-provider/en_US";
 import { unregister as unregisterServiceWorker } from "./registerServiceWorker";
@@ -35,10 +41,19 @@ ReactDOM.render(
         <Route path="/" component={App}>
           <Route path="login" component={LoginPageContainer} />
           <Route path="register" component={RegistrationPageContainer} />
-          <Route component={LayoutContainer}>
+          <Route
+            render={props => {
+              const token = localStorage.getItem("token");
+              return token ? (
+                <LayoutContainer {...props} />
+              ) : (
+                <Redirect to="/login" />
+              );
+            }}
+          >
             <IndexRoute component={PaymentsCalendarContainer} />
           </Route>
-          <Redirect from='*' to='/' />
+          <Redirect from="*" to="/" />
         </Route>
       </Router>
     </LocaleProvider>
