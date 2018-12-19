@@ -40,7 +40,7 @@ async function config(application) {
   application.use(Paths.Root, router);
 
   application.use('*', (req, res) => {
-    res.sendFile('index.html');
+    res.sendFile(path.join(__dirname, 'public/index.html'));
   });
 
   await autoImport('./models');
