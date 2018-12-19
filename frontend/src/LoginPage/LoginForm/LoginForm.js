@@ -44,7 +44,11 @@ const LoginForm = Form.create()(
         </Form.Item>
         <Form.Item>
           <Checkbox>Remember me</Checkbox>
-          <a className="login-form-forgot" href="">
+          <a
+            href=""
+            className="login-form-forgot"
+            onClick={e => e.preventDefault()}
+          >
             Forgot password
           </a>
           <br />
