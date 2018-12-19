@@ -42,13 +42,12 @@ ReactDOM.render(
           <Route path="login" component={LoginPageContainer} />
           <Route path="register" component={RegistrationPageContainer} />
           <Route
-            render={props => {
+            component={LayoutContainer}
+            onEnter={(_, replace) => {
               const token = localStorage.getItem("token");
-              return token ? (
-                <LayoutContainer {...props} />
-              ) : (
-                <Redirect to="/login" />
-              );
+              if (!token) {
+                replace({ pathname: "/login" });
+              }
             }}
           >
             <IndexRoute component={PaymentsCalendarContainer} />
